@@ -1,8 +1,6 @@
-//boutta hard code api key in js :skull:
-mapboxgl.accessToken =
-'pk.eyJ1IjoibWFsLXdvb2QiLCJhIjoiY2oyZ2t2em50MDAyMzJ3cnltMDFhb2NzdiJ9.X-D4Wvo5E5QxeP7K_I3O8w';
 
-console.log("Currently is using your location to draw markers on map. Since the markers would appear on setHacks members' homes, this may be less than ideal. We currently have it so that your location is within 200 or so metres of the placed marker. If you would like us to change this, please just contact us. Instead, we would randomly generated coordinates are in Manila, Philippines, where Joe presumably lives.")
+
+//console.log("Currently is using your location to draw markers on map. Since the markers would appear on setHacks members' homes, this may be less than ideal. We currently have it so that your location is within 200 or so metres of the placed marker. If you would like us to change this, please just contact us. Instead, we would randomly generated coordinates are in Manila, Philippines, where Joe presumably lives.")
 
 function arandomLat(){
     return (Math.random()-0.5)/10+14.6;
@@ -25,6 +23,9 @@ function getDistance(long1,lat1,long2,lat2){
 }
 
 //loops thru all markers, calculates distance, returns the minimum marker (via a object key)
+//boutta hard code api key in js :skull:
+mapboxgl.accessToken =
+'pk.eyJ1IjoibWFsLXdvb2QiLCJhIjoiY2oyZ2t2em50MDAyMzJ3cnltMDFhb2NzdiJ9.X-D4Wvo5E5QxeP7K_I3O8w';
 function getClosestMarker(testmarkers,long,lat){
     var minDistance, minKey;
     var minlong, minlat;

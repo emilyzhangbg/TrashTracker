@@ -21,7 +21,7 @@ date = date.today()
 
 def randomMarker():
   return ((random.random()-0.5)/10+121.03,(random.random()-0.5)/10+14.6)
-
+#for privcy, generate some fixed points based in Ottawa that will prevent user tracking
 ottawaInit = [ 
   (-75.59987310789411,45.455470407950536),
   (-75.70032805056195,45.424397390553445),

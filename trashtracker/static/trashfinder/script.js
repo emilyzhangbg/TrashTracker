@@ -1,6 +1,6 @@
 
 
-//console.log("Currently is using your location to draw markers on map. Since the markers would appear on setHacks members' homes, this may be less than ideal. We currently have it so that your location is within 200 or so metres of the placed marker. If you would like us to change this, please just contact us. Instead, we would randomly generated coordinates are in Manila, Philippines, where Joe presumably lives.")
+console.log("Currently is using your location to draw markers on map. Since the markers would appear on setHacks members' homes, this may be less than ideal. If you judges would like us to change this, please just contact us. Instead, we would randomly generated coordinates in Manila, Philippines, where Joe presumably lives.")
 
 function arandomLat(){
     return (Math.random()-0.5)/10+14.6;
@@ -50,7 +50,7 @@ function getClosestMarker(testmarkers,long,lat){
             }
         }
     }
-    console.log(minDistance,minlong,minlat,long,lat)
+    //console.log(minDistance,minlong,minlat,long,lat)
     //console.log(minKey)
     //0.4 is roughly 500m
     if(minDistance<0.004){
@@ -170,9 +170,10 @@ $(document).ready(function(){
         var latitude=arandomLat();
         longitude = long;
         latitude = lat;
+        //alert(long,lat)
         //console.log(longitude,latitude)
         var values = getClosestMarker(markers,longitude,latitude);
-        console.log(values)
+        //console.log(values)
         //console.log(markers)
         //remove marker from the map only if minDistance of less than 0.4 was returned
         if(values[0]!=null){

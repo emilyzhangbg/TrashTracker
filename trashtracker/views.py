@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.utils.safestring import mark_safe
 from django.template import Library
-import json
+import json#pov: you are Fan debugging code at 8 AM
 import random
 from datetime import date
 #from django.views.decorators.csrf import csrf_exempt
@@ -22,7 +22,16 @@ date = date.today()
 def randomMarker():
   return ((random.random()-0.5)/10+121.03,(random.random()-0.5)/10+14.6)
 
-
+ottawaInit = [ 
+  (-75.59987310789411,45.455470407950536),
+  (-75.70032805056195,45.424397390553445),
+  (-75.71883815964382,45.414871085967825),
+  (-75.80616734444483,45.348074631804025),
+  (-75.89962678696055,45.30918921883662),
+  (-75.69753127268334,45.36743670936775),
+  (-75.73721792881075,45.27380507909924),
+  (-75.6672088825539,45.32104048339352)
+]
 def compareTimes():
     global today, markers, trashReported,trashRemoved,date
     if today!=date.today().day:
@@ -41,6 +50,7 @@ def get_client_ip(request):
     else:
         ip = request.META.get('REMOTE_ADDR')
     return ip
+
 #@csrf_exempt
 def index(request):
     global markers,trashRemoved,trashReported,date,numRequests
@@ -49,6 +59,8 @@ def index(request):
     if numRequests == 0:
         for i in range(166):
           markers.add(randomMarker())
+        for marker in ottawaInit:
+          markers.add(marker)
         numRequests = 1
     if request.method == "POST":
         if request.POST.get('type') == 'add':

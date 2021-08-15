@@ -12,6 +12,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js" integrity="sha512-yocoLferfPbcwpCMr8v/B0AB4SWpJlouBwgE0D3ZHaiP1nuu5djZclFEIj9znuqghaZ3tdCMRrreLoM8km+jIQ==" crossorigin="anonymous"></script>
 		<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://scheduler.distributed.computer/dcp-client/dcp-client.js"></script>
 		<link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.css" rel="stylesheet" />
 
 		<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -109,7 +110,7 @@
 
 			h1,h2,h5{
 				float:left;
-				left:3%;
+				left:1.75%;
 				position:absolute;
 				font-family: 'Raleway', sans-serif;
 			}
@@ -169,13 +170,13 @@
 			<br>
 			<br>
 			<br>
-			<h2>Trash Seen: {{ trashReported }}   |   Trash Removed: {{ trashRemoved }}</h2>
+			<h2>Trash Found: {{ trashReported }}   |   Trash Removed: {{ trashRemoved }}</h2>
 			<br>
 			<br>
 			<h2>Today is {{today}} UTC</h2>
       <br>
       <br>
-      <h2>See Manila</h2>
+      <h2>Joe Wants You to See Manila</h2>
 		
 		<div id = "footer">
 			
@@ -190,8 +191,8 @@
 				var lat = "{{ v }}";
 				markers[markersCount] = [];
 				//console.log("a",long,lat);
-				markers[markersCount][0] = (long);
-				markers[markersCount][1] = (lat);
+				markers[markersCount][0] = long;
+				markers[markersCount][1] = lat;
 				//console.log(markers);
 				markersCount++;
 		</script>

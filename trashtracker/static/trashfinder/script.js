@@ -17,17 +17,20 @@ navigator.geolocation.getCurrentPosition(function (position) {
 lat = position.coords.latitude;
 long = position.coords.longitude;
 
-//pythagorean formula - no need to convert into metres or anything
+//pythagorean formula should work right - no need to convert into metres or anything
 function getDistance(long1,lat1,long2,lat2){
     return Math.sqrt((long1-long2)**2 + (lat1-lat2)**2);
 }
 
 //loops thru all markers, calculates distance, returns the minimum marker (via a object key)
+//boutta hard code api key in js :skull:
 mapboxgl.accessToken =
 'pk.eyJ1IjoibWFsLXdvb2QiLCJhIjoiY2oyZ2t2em50MDAyMzJ3cnltMDFhb2NzdiJ9.X-D4Wvo5E5QxeP7K_I3O8w';
 function getClosestMarker(testmarkers,long,lat){
     var minDistance, minKey;
     var minlong, minlat;
+    for(i = 0;i<testmarkers.length;i++){
+        //console.log("a",testmarkers[i])
         if (minDistance == undefined){
             minDistance = getDistance(testmarkers[i][0],testmarkers[i][1],long,lat);
 
@@ -47,6 +50,8 @@ function getClosestMarker(testmarkers,long,lat){
             }
         }
     }
+    //console.log(minDistance,minlong,minlat,long,lat)
+    //console.log(minKey)
     //0.4 is roughly 500m
     if(minDistance<0.004){
         return [minKey,minlong,minlat];
@@ -55,7 +60,7 @@ function getClosestMarker(testmarkers,long,lat){
     return [null,minlong,minlat];
 }
 
-//this removes the marker from the map
+//this in theory should remove the marker from the map
 function removeMarker(key){
     if(key!=null){
         allMarkers[key].remove();
@@ -80,6 +85,11 @@ $(document).ready(function(){
     $("#foundTrashButton").click(function(){
       //currently uses randomly generated coordinates since otherwise the markers would only appear on setHacks members' homes, which would be less than ideal
       //randomly generated coordinates are in Manila, Philippines, where Joe presumably lives
+
+      /*Code for getting locaation
+        simply use global vars lat,long on lines 13,14 instead of longitude and latitude
+      */
+
 
       /* DCL - chose to not use because of inconsistency
         This was intended to be used for calculating the nearest marker by comparing distances of all markers to user's location
@@ -132,7 +142,7 @@ $(document).ready(function(){
         },5000); //prevent malicious spammers 
         var longitude=arandomLng(); //for manila purposes
         var latitude=arandomLat();
-        longitude = long; //user location
+        longitude = long; //or just use user location
         latitude = lat;
         var currMarker = new mapboxgl.Marker({
             color: color_scale(arandomOneDeci()).hex()
@@ -160,13 +170,18 @@ $(document).ready(function(){
         var latitude=arandomLat();
         longitude = long;
         latitude = lat;
+        //alert(long,lat)
+        //console.log(longitude,latitude)
         var values = getClosestMarker(markers,longitude,latitude);
+        //console.log(values)
+        //console.log(markers)
         //remove marker from the map only if minDistance of less than 0.4 was returned
         if(values[0]!=null){
             removeMarker(values[0]);
             
             //remove marker from the markers array
             var index = findElement(markers,[values[1],values[2]]);
+            //console.log("index",index);
 
             markers.splice(index,1);
             
@@ -190,7 +205,7 @@ const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/light-v10',
     center: [long, lat],
-    zoom: 18
+    zoom: 18 //ah yes, lets all see our own house
 });
 
 //stores every longitude, marker pair
@@ -198,13 +213,16 @@ var allMarkers = {}
 var color_scale = chroma.scale(['yellow', 'red']);
 
 map.on('load', () => {
+    //console.log(markers);
     for (i = 0;i<markers.length;i++){
+        //console.log(markers[i])
         //create new markers for data stored in views.py
         var currMarker = new mapboxgl.Marker({
             color: color_scale(arandomOneDeci()).hex()
         })
             .setLngLat([markers[i][0], markers[i][1]])
             .addTo(map);
+        //console.log(currMarker)
         //add marker to allMarkers
         allMarkers[markers[i][0]] = currMarker;
     }

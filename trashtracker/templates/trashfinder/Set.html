@@ -5,7 +5,7 @@
 
 	<head>
 		<meta charset="utf-8" />
-		<title>Trash Tracker</title>
+		<title>TrashTracker</title>
 		<link rel="shortcut icon" type="image/jpg" href="{% static 'trashfinder/Favicon.png' %}"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--color scale-->
@@ -172,13 +172,15 @@
 			<h2>Trash Seen: {{ trashReported }}   |   Trash Removed: {{ trashRemoved }}</h2>
 			<br>
 			<br>
-			<h2>Today is {{today}}</h2>
-		
+			<h2>Today is {{today}} UTC</h2>
+      <br>
+      <br>
 		
 		<div id = "footer">
 			
 		</div>
 		<script>
+      alert("See Manila");
 			var markersCount = 0;
 			var markers = [];
 		</script>

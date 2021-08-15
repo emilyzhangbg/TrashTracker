@@ -23,9 +23,8 @@ function getDistance(long1,lat1,long2,lat2){
 }
 
 //loops thru all markers, calculates distance, returns the minimum marker (via a object key)
-//boutta hard code api key in js :skull:
 mapboxgl.accessToken =
-'pk.eyJ1IjoibWFsLXdvb2QiLCJhIjoiY2oyZ2t2em50MDAyMzJ3cnltMDFhb2NzdiJ9.X-D4Wvo5E5QxeP7K_I3O8w';
+'REDACTED';
 function getClosestMarker(testmarkers,long,lat){
     var minDistance, minKey;
     var minlong, minlat;
